@@ -9,7 +9,6 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -17,20 +16,18 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class BatchConfig {
 
-    final JobRepository jobRepository;
-    final PlatformTransactionManager platformTransactionManager;
+    final private JobRepository jobRepository;
+    final private PlatformTransactionManager platformTransactionManager;
+    final private MyItemReader myItemReader;
+    final private MyItemProcessor myItemProcessor;
+    final private MyItemWriter myItemWriter;
 
-    @Autowired
-    private MyItemReader myItemReader;
-    @Autowired
-    private MyItemProcessor myItemProcessor;
-    @Autowired
-    private MyItemWriter myItemWriter;
-
-    public BatchConfig(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
-
+    public BatchConfig(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager, MyItemReader myItemReader, MyItemProcessor myItemProcessor, MyItemWriter myItemWriter) {
         this.jobRepository = jobRepository;
         this.platformTransactionManager = platformTransactionManager;
+        this.myItemReader = myItemReader;
+        this.myItemProcessor = myItemProcessor;
+        this.myItemWriter = myItemWriter;
     }
 
     @Bean

@@ -21,7 +21,7 @@ public class MyItemReader implements ItemReader<Integer> {
         Integer item;
         if (i < list.size()) {
             item = list.get(i++);
-            System.out.println("Inside item reader, item: " + item);
+            System.out.println("Inside item reader, Item : " + item);
             return item;
         }
         i = 0;  //reset index
